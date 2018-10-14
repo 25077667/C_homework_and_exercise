@@ -1,0 +1,12 @@
+Kelly 70 60 50
+Tom 20 80
+Jerry 30 55 62 45 71
+Sem 42 92 74
+Mary 35 21 66 88
+Peter 96
+Andy 71 88
+David 100
+Brian 99 64 53
+Chris 10
+
+

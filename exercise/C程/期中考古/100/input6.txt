@@ -1,0 +1,15 @@
+Kelly Williams 37.5 41.5
+Tom Robinson 50.5 55.5 61
+Jerry 93
+Sem Martin 44 58.4 70.6 62
+Mary Taylor 55 31.8 31.2 44
+Peter 62.1 90.9
+Kelly Davis 87.4 97.6 77
+Jen White 82.1 62 51.9
+Andy Garcia 49 38.2 32.8 62
+David Martinez 90 95 98
+Brian Miller 11.9 40.1 32
+Jerry Brown 12 82
+Tom 13 74.3 46.7
+Brian Harris 55 62
+Chris White 95.4
