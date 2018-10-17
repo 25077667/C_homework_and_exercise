@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
 	arm();
 	//1
-	cout<<"Name: ·¨§ÓÂ{"<<endl<<"Student ID: B073040047"<<endl;
+	cout<<"Name: ·¨§ÓÂ{"<<endl<<"Student ID: B*********"<<endl;
 
 	//2
 	int n;
@@ -72,9 +72,9 @@ int main(int argc, char** argv) {
 		if(n==-1)break;
 		printf("Enter a %d-digit positive integer: ",n);
 		string rs,s;
-		cin>>s;
-		for(int i=s.size();i>0;i--)
-			rs+=s[i-1];
+		cin>>rs;
+		s=rs;
+		reverse(rs.begin(),rs.end());
 		cout<<s<<((rs==s)?" is a palindrome.":" is not a palindrome.")<<endl;
 	}
 
@@ -93,7 +93,6 @@ int main(int argc, char** argv) {
 				c=0;
 			a/=10;
 			b/=10;
-
 		}
 		if(carry)
 			cout<<carry<<" carry operations\n";
