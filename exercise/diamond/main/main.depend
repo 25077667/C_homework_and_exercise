@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1539847394 source:c:\users\yang\git\nsysu_107_c_homework_and_exercise\exercise\diamond\main\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+
