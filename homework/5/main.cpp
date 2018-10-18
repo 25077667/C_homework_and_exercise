@@ -7,7 +7,6 @@ static int instanceCount = 0;
 void gotoxy(int x, int y)
 {
     COORD coord;
-
     if( instanceCount == 0 )
     {
         hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
@@ -15,7 +14,6 @@ void gotoxy(int x, int y)
     }
     coord.X = x - 1;
     coord.Y = y - 1;
-
     SetConsoleCursorPosition( hConsole, coord );
 }
 
@@ -68,7 +66,7 @@ int main(){
     cin>>a>>b>>c>>d>>e;
     cout<<"請輸入x軸範圍 : ";
     int cache1,cache2;  cin>>cache1>>cache2;    upper_x=max(cache1,cache2);lower_x=min(cache1,cache2);
-    int tan_point;  cout<<"請輸入所求切點的x值";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
+    int tan_point;  cout<<"請輸入所求切點的x值 : ";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
     printf("實際切線斜率 : %.6f\n",tan_value(a,b,c,d,e,tan_point));
 
     //graph
@@ -77,23 +75,47 @@ int main(){
     for(int i=-39;i<40;i++){if(i%5 == 0){if(i<0){printf("%d  ",i);}else if(i==0){printf("  %d   ",i);}else{printf(" %d  ",i);}}}
     cout<<endl;//天殺的排版
     for(int i=-39;i<40;i++){if(i%5 == 0){cout<<"+";}else{cout<<"-";}}
-    cout<<endl;
-    for(int i=lower_x;i<upper_x;i++){
+    cout<<"Y"<<endl;
+    for(int i=lower_x;i<=upper_x;i++){
         if(i%5==0){
             gotoxy(40,i-lower_x+6);
             printf("%d",i);
 
-            gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
-            putchar('*');
+            if(original_function(a,b,c,d,e,i)+39>0){
+                gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
+                putchar('*');
+            }
         }
         else{
             gotoxy(40,i-lower_x+6);
             putchar('|');
-            gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
-            putchar('*');
+
+            if(original_function(a,b,c,d,e,i)+39>0){
+                gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
+                putchar('*');
+            }
         }
     }
 
-    //
+    //tangent line
+    char element;element='-';
+    if((int)tan_value(a,b,c,d,e,tan_point) == 0) element= '|';
+    else if(tan_value(a,b,c,d,e,tan_point)<=10 && tan_value(a,b,c,d,e,tan_point)>0)  element = '\\';
+    else if(tan_value(a,b,c,d,e,tan_point)>=-10 && tan_value(a,b,c,d,e,tan_point)<0)    element = '/';
+    for(int i=5;i>-5;i--){
+        //    y=m(x-a)+b
+        int A=tan_point, B=original_function(a,b,c,d,e,tan_point), m=tan_value(a,b,c,d,e,tan_point);
+        gotoxy((int)m*(tan_point-i-A)+B+39,tan_point-lower_x+6-i);
+        putchar(element);
+        //puts(element);
+    }
+
+    gotoxy(original_function(a,b,c,d,e,tan_point)+39,tan_point-lower_x+6);
+    putchar('P');
+    gotoxy(original_function(a,b,c,d,e,tan_point)+42,tan_point-lower_x+6);
+    printf("( %d, %d )",tan_point,original_function(a,b,c,d,e,tan_point));
+
+    for(int i=0;i<upper_x/2;i++)
+        cout<<"\n";//確保fileend不要來搗蛋
     return 0;
 }
