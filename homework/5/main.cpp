@@ -17,41 +17,6 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition( hConsole, coord );
 }
 
-bool clrscr()
-{
-    COORD coordScreen = { 0, 0 }; /* here's where we'll home the cursor */
-    BOOL bSuccess;
-    DWORD cCharsWritten;
-    CONSOLE_SCREEN_BUFFER_INFO csbi; /* to get buffer info */
-    DWORD dwConSize; /* number of character cells in the current buffer */
-
-    if( instanceCount == 0 )
-    {
-        hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
-        instanceCount = 1;
-    }
-
-    /* get the number of character cells in the current buffer */
-    bSuccess = GetConsoleScreenBufferInfo(hConsole, &csbi);
-
-    dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
-    /* fill the entire screen with blanks */
-    bSuccess = FillConsoleOutputCharacter(hConsole, (TCHAR) ' ',
-        dwConSize, coordScreen, &cCharsWritten);
-
-    /* get the current text attribute */
-    bSuccess = GetConsoleScreenBufferInfo(hConsole, &csbi);
-
-    /* now set the buffer's attributes accordingly */
-    bSuccess = FillConsoleOutputAttribute(hConsole, csbi.wAttributes,
-        dwConSize, coordScreen, &cCharsWritten);
-
-    /* put the cursor at (0, 0) */
-    bSuccess = SetConsoleCursorPosition(hConsole, coordScreen);
-
-    return 1;
-}
-
 double tan_value(int a,int b,int c,int d,int e,int x){
     return (-1)*a*sin(b*acos(-1)*x /30)*b*acos(-1)/30 + c*cos(x*d*acos(-1)/30)*d*acos(-1)/30;
 }
