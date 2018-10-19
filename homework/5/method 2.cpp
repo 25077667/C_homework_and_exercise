@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <cmath>
+#include <math.h>
 #define PI 3.14159
 int main()
 {
@@ -43,9 +43,19 @@ int main()
             else{
                 if(func==y){
                     if(x==find_x){
-                        printf("(%d,%d)P",find_x,func);
-                        if(func<0)
-                            y+=(5+log10(x)+log10(y));
+                        if(func<0 && func>-40){
+                            printf("(%d,%d)P",find_x,func);
+                            y+=(5+(int)log10(x)+(int)log10(y*(-1)));
+                        }
+                        else if(func >0 && func <40){
+                            printf("P(%d,%d)",find_x,func);
+                        }
+                        else if(func == 0){
+                            printf("P(%d,%d)",find_x,func);
+                            y=40;
+                        }
+                        else
+                            y--;
                     }
                     else{
                     printf("*");
