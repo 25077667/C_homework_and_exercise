@@ -68,16 +68,19 @@ int main(){
     for(int i=5;i>-5;i--){
         //    y=m(x-A)+B
         int A=tan_point, B=original_function(a,b,c,d,e,tan_point), m=tan_value(a,b,c,d,e,tan_point);
-        gotoxy((int)m*(tan_point-i-A)+B+39,tan_point-lower_x+6-i);
-        putchar(element);
+        if((int)m*(tan_point-i-A)+B+39 >0 || (int)m*(tan_point-i-A)+B+39 <80){
+            gotoxy((int)m*(tan_point-i-A)+B+39,tan_point-lower_x+6-i);
+            putchar(element);
+        }
         //puts(element);
     }
     //print the tangent point
-    gotoxy(original_function(a,b,c,d,e,tan_point)+39,tan_point-lower_x+6);
-    putchar('P');
-    gotoxy(original_function(a,b,c,d,e,tan_point)+28,tan_point-lower_x+6);
-    printf("( %d, %d )",tan_point,original_function(a,b,c,d,e,tan_point));  //print the tangent point coordinate
-
+    if(original_function(a,b,c,d,e,tan_point)>-40 && original_function(a,b,c,d,e,tan_point) <60){
+        gotoxy(original_function(a,b,c,d,e,tan_point)+39,tan_point-lower_x+6);
+        putchar('P');
+        gotoxy(original_function(a,b,c,d,e,tan_point)+28,tan_point-lower_x+6);
+        printf("( %d, %d )",tan_point,original_function(a,b,c,d,e,tan_point));  //print the tangent point coordinate
+    }
     for(int i=0;i<upper_x/2;i++)
         cout<<"\n";//make sure file end do not cause trouble
     return 0;
