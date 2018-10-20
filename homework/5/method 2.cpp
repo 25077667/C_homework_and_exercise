@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+ï»¿#include<bits/stdc++.h>
 using namespace std;
 double tan_value(int a,int b,int c,int d,int e,int x){
     return (-1)*a*sin(b*acos(-1)*x /30)*b*acos(-1)/30 + c*cos(x*d*acos(-1)/30)*d*acos(-1)/30;   //we know that arccos(-1) is equal to pi
@@ -9,12 +9,12 @@ int original_function(int a,int b,int c,int d,int e,int x){
 int main()
 {
     int a,b,c,d,e,lower_x,upper_x;
-    cout<<"½Ð¿é¤J5­Ó«Y¼Æ : ";
+    cout<<"è«‹è¼¸å…¥5å€‹ä¿‚æ•¸ : ";
     cin>>a>>b>>c>>d>>e;
-    cout<<"½Ð¿é¤Jx¶b½d³ò : ";
+    cout<<"è«‹è¼¸å…¥xè»¸ç¯„åœ : ";
     int cache1,cache2;  cin>>cache1>>cache2;    upper_x=max(cache1,cache2);lower_x=min(cache1,cache2);
-    int tan_point;  cout<<"½Ð¿é¤J©Ò¨D¤ÁÂIªºx­È : ";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
-    printf("¹ê»Ú¤Á½u±×²v : %.6f\n",tan_value(a,b,c,d,e,tan_point));
+    int tan_point;  cout<<"è«‹è¼¸å…¥æ‰€æ±‚åˆ‡é»žçš„xå€¼ : ";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
+    printf("å¯¦éš›åˆ‡ç·šæ–œçŽ‡ : %.6f\n",tan_value(a,b,c,d,e,tan_point));
 
     cout<<"   -35  -30  -25  -20  -15  -10  -5    0     5    10   15   20   25   30   35\n";
     for(int x=lower_x; x<=upper_x; x++){
