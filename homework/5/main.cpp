@@ -44,7 +44,7 @@ int main(){
             gotoxy(40,i-lower_x+6);
             printf("%d",i);
 
-            if(original_function(a,b,c,d,e,i)+39>0 || original_function(a,b,c,d,e,i) <41){
+            if(original_function(a,b,c,d,e,i)+39>0 && original_function(a,b,c,d,e,i) <41){
                 gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
                 putchar('*');
             }
@@ -53,7 +53,7 @@ int main(){
             gotoxy(40,i-lower_x+6);
             putchar('|');
 
-            if(original_function(a,b,c,d,e,i)+39>0 || original_function(a,b,c,d,e,i) <41){
+            if(original_function(a,b,c,d,e,i)+39>0 && original_function(a,b,c,d,e,i) <41){
                 gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
                 putchar('*');
             }
@@ -68,7 +68,7 @@ int main(){
     for(int i=5;i>-5;i--){
         //    y=m(x-A)+B
         int A=tan_point, B=original_function(a,b,c,d,e,tan_point), m=tan_value(a,b,c,d,e,tan_point);
-        if((int)m*(tan_point-i-A)+B+39 >0 || (int)m*(tan_point-i-A)+B+39 <80){
+        if((int)m*(tan_point-i-A)+B+39 >0 && (int)m*(tan_point-i-A)+B+39 <79){
             gotoxy((int)m*(tan_point-i-A)+B+39,tan_point-lower_x+6-i);
             putchar(element);
         }

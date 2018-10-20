@@ -22,7 +22,7 @@ int main()
             int point_y_value=original_function(a,b,c,d,e,x);
             if(x==lower_x){
                 if(point_y_value==y)
-                    cout<<"*";;
+                    cout<<"*";
                 else if(y==0)
                     printf("%d",x);
                 else if(y==40)
