@@ -22,7 +22,7 @@ int main()
             int point_y_value=original_function(a,b,c,d,e,x);
             if(x==lower_x){
                 if(point_y_value==y)
-                    cout<<"*";;
+                    cout<<"*";
                 else if(y==0)
                     printf("%d",x);
                 else if(y==40)
@@ -58,9 +58,9 @@ int main()
                     if(tans_line_y==y){
                         if((int)tan_value(a,b,c,d,e,tan_point)==0)
                             cout<<"|";
-                        else if(tan_value(a,b,c,d,e,tan_point)>0&&tan_value(a,b,c,d,e,tan_point)<=10)
+                        else if(tan_value(a,b,c,d,e,tan_point)>0 && tan_value(a,b,c,d,e,tan_point)<=10)
                             cout<<"\\";
-                        else if(tan_value(a,b,c,d,e,tan_point)<0&&tan_value(a,b,c,d,e,tan_point)>=-10)
+                        else if(tan_value(a,b,c,d,e,tan_point)<0 && tan_value(a,b,c,d,e,tan_point)>=-10)
                             cout<<"/";
                         else
                             cout<<"-";
