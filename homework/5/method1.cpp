@@ -41,20 +41,20 @@ int main(){
     cout<<"Y"<<endl;
     for(int i=lower_x;i<=upper_x;i++){
         if(i%5==0){
-            gotoxy(40,i-lower_x+6);
+            gotoxy(40,abs(i-lower_x+6));
             printf("%d",i);
 
             if(original_function(a,b,c,d,e,i)+39>0 && original_function(a,b,c,d,e,i) <41){
-                gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
+                gotoxy(original_function(a,b,c,d,e,i)+39,abs(i-lower_x+6));
                 putchar('*');
             }
         }
         else{
-            gotoxy(40,i-lower_x+6);
+            gotoxy(40,abs(i-lower_x+6));
             putchar('|');
 
             if(original_function(a,b,c,d,e,i)+39>0 && original_function(a,b,c,d,e,i) <41){
-                gotoxy(original_function(a,b,c,d,e,i)+39,i-lower_x+6);
+                gotoxy(original_function(a,b,c,d,e,i)+39,abs(i-lower_x+6));
                 putchar('*');
             }
         }
@@ -69,19 +69,19 @@ int main(){
         //    y=m(x-A)+B
         int A=tan_point, B=original_function(a,b,c,d,e,tan_point), m=tan_value(a,b,c,d,e,tan_point);
         if((int)m*(tan_point-i-A)+B+39 >0 && (int)m*(tan_point-i-A)+B+39 <79){
-            gotoxy((int)m*(tan_point-i-A)+B+39,tan_point-lower_x+6-i);
+            gotoxy((int)m*(tan_point-i-A)+B+39,abs(tan_point-lower_x+6-i));
             putchar(element);
         }
         //puts(element);
     }
     //print the tangent point
     if(original_function(a,b,c,d,e,tan_point)>-40 && original_function(a,b,c,d,e,tan_point) <60){
-        gotoxy(original_function(a,b,c,d,e,tan_point)+39,tan_point-lower_x+6);
+        gotoxy(original_function(a,b,c,d,e,tan_point)+39,abs(tan_point-lower_x+6));
         putchar('P');
-        gotoxy(original_function(a,b,c,d,e,tan_point)+28,tan_point-lower_x+6);
+        gotoxy(original_function(a,b,c,d,e,tan_point)+27,abs(tan_point-lower_x+6));
         printf("( %d, %d )",tan_point,original_function(a,b,c,d,e,tan_point));  //print the tangent point coordinate
     }
-    for(int i=0;i<upper_x/2;i++)
+    for(int i=0;i<(abs(upper_x)+abs(lower_x));i++)
         cout<<"\n";//make sure file end do not cause trouble
     return 0;
 }
