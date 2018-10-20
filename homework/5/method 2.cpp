@@ -6,15 +6,37 @@ double tan_value(int a,int b,int c,int d,int e,int x){
 int original_function(int a,int b,int c,int d,int e,int x){
     return  a*cos(b*acos(-1)*x /30) + c*sin(x*d*acos(-1)/30)+e;
 }
+
 int main()
 {
     int a,b,c,d,e,lower_x,upper_x;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+//    cout<<"�п�J5�ӫY�� : ";
+    cin>>a>>b>>c>>d>>e;
+//    cout<<"�п�Jx�b�d�� : ";
+    int cache1,cache2;  cin>>cache1>>cache2;    upper_x=max(cache1,cache2);lower_x=min(cache1,cache2);
+    int tan_point;  cout<<" ";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
+    printf(": %.6f\n",tan_value(a,b,c,d,e,tan_point));
+=======
+>>>>>>> 6bcffc928109d01834567a572050fe6a9a77520a
+>>>>>>> 53329e6ff270c6ea7e762fd50c8861941647278f
     cout<<"請輸入5個係數 : ";
     cin>>a>>b>>c>>d>>e;
     cout<<"請輸入x軸範圍 : ";
     int cache1,cache2;  cin>>cache1>>cache2;    upper_x=max(cache1,cache2);lower_x=min(cache1,cache2);
     int tan_point;  cout<<"請輸入所求切點的x值 : ";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
     printf("實際切線斜率 : %.6f\n",tan_value(a,b,c,d,e,tan_point));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> c8f96dc5542f3e251aeb169108756e3d33e75bb7
+>>>>>>> 6bcffc928109d01834567a572050fe6a9a77520a
+>>>>>>> 53329e6ff270c6ea7e762fd50c8861941647278f
 
     cout<<"   -35  -30  -25  -20  -15  -10  -5    0     5    10   15   20   25   30   35\n";
     for(int x=lower_x; x<=upper_x; x++){
@@ -22,7 +44,7 @@ int main()
             int point_y_value=original_function(a,b,c,d,e,x);
             if(x==lower_x){
                 if(point_y_value==y)
-                    cout<<"*";;
+                    cout<<"*";
                 else if(y==0)
                     printf("%d",x);
                 else if(y==40)
