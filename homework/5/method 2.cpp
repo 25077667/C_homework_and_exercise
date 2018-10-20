@@ -6,6 +6,7 @@ double tan_value(int a,int b,int c,int d,int e,int x){
 int original_function(int a,int b,int c,int d,int e,int x){
     return  a*cos(b*acos(-1)*x /30) + c*sin(x*d*acos(-1)/30)+e;
 }
+
 int main()
 {
     int a,b,c,d,e,lower_x,upper_x;
