@@ -15,27 +15,27 @@ void leap_year_judge(){
 int main(){
     leap_year_judge();
     int input;
-    while(cout<<"Input: " && cin >> input && input/1000000 && !(input/10000000) ){
+    while(cout<<"Input: " && cin >> input && input/1000000 && !(input/10000000) && (input%1000)/10 <13 && input%10 <7){
         int count_of_first_line = 7 - (input%10);    //record the first line last number
         int count_of_looping=1;
         if(years[input/1000])
             mon[3]=29;
         char* line1[]={"","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        printf("%45s, %d\n",line1[(input%1000)/10], input/1000);
-        cout<<"SUN\tMON\tTUE\tWED\tTHU\tFRI\tSAT"<<endl;
+        printf("%29s, %d\n",line1[(input%1000)/10], input/1000);
+        cout<<"  SUN  MON  TUE  WED  THU  FRI  SAT"<<endl;
 
         for(int i=0;i<input%10;i++)
-            cout<<"  \t";
+            cout<<"     ";
         for(int i=input%10, j=1;i<7;i++,j++)
-            printf("%3d\t",j);
+            printf("%5d",j);
         cout<<endl;
         for(int i=count_of_first_line+1;i<=mon[(input%1000)/10];i++){
             if(count_of_looping == 7){
-                printf("%3d\n",i);
+                printf("%5d\n",i);
                 count_of_looping = 1;
             }
             else{
-                printf("%3d\t",i);
+                printf("%5d",i);
                 count_of_looping ++;
             }
         }
