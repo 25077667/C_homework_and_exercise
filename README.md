@@ -10,4 +10,5 @@ homework 就是家課 想到更炫砲的解法歡迎丟PR
 
 ## WARNING:
 If you just copy my code, you should bear the legal liability and responsibility.
-in following path "/exercise/past_ midterm or final" are not all code wrote by myself. please use it carefully.
+
+in following path "/exercise/past_ midterm or final" is not all codes written by myself. please use it carefully.
