@@ -34,11 +34,8 @@ int main(){
         char c;
         cout<<"請輸入要尋找的字元:";
         cin>>c;
-
-        if((int)c>96 && (int) c<123)
-            printf("字元\'%c\'一共尋找到:%d",c,lower_char[(int)c-97]);
-        else if((int)c>64 && (int)c<91)
-            printf("字元\'%c\'一共尋找到:%d",c,captal_char[(int)c-65]);
+        if(((int)c>96 && (int) c<123) || ((int)c>64 && (int)c<91))
+            printf("字元\'%c\'一共尋找到:%d",c,lower_char[toupper(c)-'A']+captal_char[toupper(c)-'A']);
         else if(c == '*'){
             cout<<"結束尋找。";
             break;
