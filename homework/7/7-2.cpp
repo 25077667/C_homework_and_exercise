@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include <time.h>
 using namespace std;
 int lower_char[26]={0},captal_char[26]={0};
 void read_write_file(){
