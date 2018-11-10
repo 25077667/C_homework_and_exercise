@@ -4,6 +4,7 @@ using namespace std;
 static HANDLE hConsole = 0;
 static int instanceCount = 0;
 int a, b, c, d, e, f;
+queue<double> roots;
 
 void gotoxy(int x, int y){
     COORD coord;        //https://docs.microsoft.com/en-us/windows/console/coord-str
@@ -26,6 +27,19 @@ double power(double x,int n){
 double original_function(double p){
     return  a*power(p,5)+b*power(p,4)+c*power(p,3)+d*power(p,2)+ e*p + f;    //the variable p on the original function value
 }
+int find_root(double upper_x,double lower_x){
+    double preverous=lower_x;
+    roots.push(lower_x);
+    for(double i=lower_x*1.0; i<=upper_x; i+=0.1){
+        if(original_function(i)*original_function(preverous)<0)
+            roots.push(preverous);
+        preverous=i;
+    }
+    roots.push(upper_x);
+}
+double integral_calc(double upper_x,double lower_x){
+    return a*(power(upper_x,6)-power(lower_x,6))/6.0 + b*(power(upper_x,5)-power(lower_x,5))/5.0 + c*(power(upper_x,4)-power(lower_x,4))/4.0 + d*(power(upper_x,3)-power(lower_x,3))/3.0 + e*(power(upper_x,2)-power(lower_x,2))/2.0 + f*(upper_x-lower_x);
+}
 void Differential_1(int p){
     for(double i=0.1;i>=0.01;i-=0.01){
         double diff=((double)original_function(p+i)-(double)original_function(p))/i;
@@ -45,18 +59,26 @@ void Integral_1(int upper_x,int lower_x){
         printf("%.6f\n",area);
     }
 }
-void Integral_2(int upper_x,int lower_x){
-    printf("%.6f\n",a*power(upper_x-lower_x,6)/6.0 + b*power(upper_x-lower_x,5)/5.0 + c*power(upper_x-lower_x,4)/4.0 + d*power(upper_x-lower_x,3)/3.0 + e*power(upper_x-lower_x,2)/2.0 + f*(upper_x-lower_x));
+void Integral_2(double upper_x,double lower_x){
+    double sum=0;
+    for(int i=0;i<=roots.size();i++){
+        lower_x=roots.front();
+        roots.pop();
+        upper_x=roots.front();
+        //cout<<lower_x<<" "<<upper_x<<endl;
+        sum+=integral_calc(upper_x,lower_x);
+    }
+    printf("%.6f\n",sum);
 }
 
 int main(){
-
-    int upper_x=0,lower_x=0;    //upper_x  the upper bound of x,
+    double upper_x=0,lower_x=0;    //upper_x  the upper bound of x,
     cout<<"please input 6 coefficient:";//input 5 coefficient
     cin>>a>>b>>c>>d>>e>>f;
     int tan_point;  cout<<"please input the tangent point p:";cin>>tan_point;
     cout<<"please input the upper blond and the lower bound of x:";//input the range which you want
     int cache1,cache2;  cin>>cache1>>cache2;    upper_x=max(cache1,cache2);lower_x=min(cache1,cache2);if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}  //make sure upper bound and lower bound is max and min
+    find_root(upper_x,lower_x);
 
     //graph
     //用法大概長這樣 gotoxy(40,40);putchar('*');
