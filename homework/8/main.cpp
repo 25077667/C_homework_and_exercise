@@ -61,6 +61,9 @@ void Integral_1(int upper_x,int lower_x){
 }
 void Integral_2(double upper_x,double lower_x){
     double sum=0;
+    if(roots.size()==2)
+        sum+=integral_calc(upper_x,lower_x);
+    else
     for(int i=0;i<=roots.size();i++){
         lower_x=roots.front();
         roots.pop();
