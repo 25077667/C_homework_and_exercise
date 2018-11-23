@@ -2,6 +2,15 @@
 #include<string>
 #include<stdlib.h>
 
+FILE *bubble_file = fopen("bubble.txt","w+");
+FILE *selection_file = fopen("selection.txt","w+");
+FILE *insertion_file = fopen("insertion.txt","w+");
+
+char* bubble_file_first_line_text = "Bubble sort result:\n";
+char* selection_file_first_line_text = "Selection sort result:\n";
+char* insertion_file_first_line_text = "Insertion sort result:\n";
+int flag=0;
+
 int bubble_sort(int* arr_input, int n, int* compare_times){
     //return swap times
     int arr[n]={0}; //prevent arr will inflect the arr_input, that is don't not modify the raw array
@@ -20,20 +29,15 @@ int bubble_sort(int* arr_input, int n, int* compare_times){
             (*compare_times)++;
         }
     }
-    //convert file name
-    char* file_first_line_text = "Bubble sort result:\n";
-    char array_size_buffer[4]; itoa(n,array_size_buffer,10);
-    std::string array_size_buffer_toString = std::string(array_size_buffer);
-    std::string file_name= "BubbleSort" + array_size_buffer_toString + ".txt";
-    //write file
-    FILE *file_pointer;
-    file_pointer = fopen(file_name.c_str(),"w+");
-    fprintf(file_pointer,file_first_line_text);
+    if(flag>3)
+        fprintf(bubble_file,"\n");
+    fprintf(bubble_file,bubble_file_first_line_text);
     for(int i=0;i<n;i++){
         char sequence[5];itoa(arr[i],sequence,10);
-        fprintf(file_pointer,sequence);
-        fprintf(file_pointer," ");
+        fprintf(bubble_file,sequence);
+        fprintf(bubble_file," ");
     }
+    flag++;
     return swap_times;
 }
 
@@ -56,19 +60,15 @@ int selection_sort(int* arr_input, int n, int* compare_times){
         arr[i] = tmp;
         swap_times ++;
     }
-
-    char* file_first_line_text = "Selection sort result:\n";
-    char array_size_buffer[4]; itoa(n,array_size_buffer,10);
-    std::string array_size_buffer_toString = std::string(array_size_buffer);
-    std::string file_name= "SelectionSort" + array_size_buffer_toString + ".txt";//file name
-    FILE *file_pointer;
-    file_pointer = fopen(file_name.c_str(),"w+");
-    fprintf(file_pointer,file_first_line_text);
+    if(flag>3)
+        fprintf(selection_file,"\n");
+    fprintf(selection_file,selection_file_first_line_text);
     for(int i=0;i<n;i++){
         char sequence[5];itoa(arr[i],sequence,10);
-        fprintf(file_pointer,sequence);
-        fprintf(file_pointer," ");
+        fprintf(selection_file,sequence);
+        fprintf(selection_file," ");
     }
+    flag++;
     return swap_times;
 }
 
@@ -89,18 +89,15 @@ int insertion_sort(int* arr_input, int n, int* compare_times){
         swap_times++;
     }
     //copying and pasting are shameful, but useful.
-    char* file_first_line_text = "Insertion sort result:\n";
-    char array_size_buffer[4]; itoa(n,array_size_buffer,10);
-    std::string array_size_buffer_toString = std::string(array_size_buffer);
-    std::string file_name= "InsertionSort" + array_size_buffer_toString + ".txt";
-    FILE *file_pointer;
-    file_pointer = fopen(file_name.c_str(),"w+");
-    fprintf(file_pointer,file_first_line_text);
+    if(flag>2)
+        fprintf(insertion_file,"\n");
+    fprintf(insertion_file,insertion_file_first_line_text);
     for(int i=0;i<n;i++){
         char sequence[5];itoa(arr[i],sequence,10);
-        fprintf(file_pointer,sequence);
-        fprintf(file_pointer," ");
+        fprintf(insertion_file,sequence);
+        fprintf(insertion_file," ");
     }
+    flag++;
     return swap_times;
 }
 int main(){
@@ -133,5 +130,6 @@ int main(){
     printf("swap times\t%d\t\t%d\t\t%d\n", bubble_sort(array_2000,sizeof(array_2000)/4,&bubble_compare_times), selection_sort(array_2000,sizeof(array_2000)/4,&selection_compare_times), insertion_sort(array_2000,sizeof(array_2000)/4,&insertion_compare_times));
     printf("compare times\t%d\t\t%d\t\t%d\n", bubble_compare_times, selection_compare_times, insertion_compare_times);
     printf("------------------------------------------------------------\n");
+    fclose(bubble_file);fclose(selection_file);fclose(insertion_file);
     return 0;
 }
