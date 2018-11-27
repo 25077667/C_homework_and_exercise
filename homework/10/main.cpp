@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<string.h>
 
 FILE *bubble_file = fopen("bubble.txt","w+");
@@ -31,11 +30,8 @@ int bubble_sort(int* arr_input, int n, int* compare_times){
     }
     if(flag>3)    fprintf(bubble_file,"\n");
     else    fprintf(bubble_file,bubble_file_first_line_text);
-    for(i=0;i<n;i++){
-        char sequence[5];itoa(arr[i],sequence,10);
-        fprintf(bubble_file,sequence);
-        fprintf(bubble_file," ");
-    }
+    for(i=0;i<n;i++)
+        fprintf(bubble_file,"%d ",arr[i]);
     flag++;
     return swap_times;
 }
@@ -60,11 +56,8 @@ int selection_sort(int* arr_input, int n, int* compare_times){
     }
     if(flag>3)  fprintf(selection_file,"\n");
     else    fprintf(selection_file,selection_file_first_line_text);
-    for(i=0;i<n;i++){
-        char sequence[5];itoa(arr[i],sequence,10);
-        fprintf(selection_file,sequence);
-        fprintf(selection_file," ");
-    }
+    for(i=0;i<n;i++)
+        fprintf(selection_file,"%d ",arr[i]);
     flag++;
     return swap_times;
 }
@@ -87,11 +80,8 @@ int insertion_sort(int* arr_input, int n, int* compare_times){
     //copying and pasting are shameful, but useful.
     if(flag>2)  fprintf(insertion_file,"\n");
     else    fprintf(insertion_file,insertion_file_first_line_text);
-    for(i=0;i<n;i++){
-        char sequence[5];itoa(arr[i],sequence,10);
-        fprintf(insertion_file,sequence);
-        fprintf(insertion_file," ");
-    }
+    for(i=0;i<n;i++)
+        fprintf(insertion_file,"%d ",arr[i]);
     flag++;
     return swap_times;
 }
