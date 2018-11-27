@@ -19,8 +19,8 @@ int main(){
         int count_of_first_line = 7 - (input%10);    //record the first line last number
         int count_of_looping=1;
         if(years[input/1000])
-            mon[3]=29;
-        char* line1[]={"","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+                mon[2]=29;
+        const char* line1[]={"","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         printf("%29s, %d\n",line1[(input%1000)/10], input/1000);
         cout<<"  SUN  MON  TUE  WED  THU  FRI  SAT"<<endl;
 
