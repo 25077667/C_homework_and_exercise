@@ -1,24 +1,24 @@
 #include<stdio.h>
-#include<string>
 #include<stdlib.h>
+#include<string.h>
 
 FILE *bubble_file = fopen("bubble.txt","w+");
 FILE *selection_file = fopen("selection.txt","w+");
 FILE *insertion_file = fopen("insertion.txt","w+");
 
-char* bubble_file_first_line_text = "Bubble sort result:\n";
-char* selection_file_first_line_text = "Selection sort result:\n";
-char* insertion_file_first_line_text = "Insertion sort result:\n";
-int flag=0;
+const char* bubble_file_first_line_text = "Bubble sort result:\n";
+const char* selection_file_first_line_text = "Selection sort result:\n";
+const char* insertion_file_first_line_text = "Insertion sort result:\n";
+int flag=0,i;
 
 int bubble_sort(int* arr_input, int n, int* compare_times){
     //return swap times
     int arr[n]={0}; //prevent arr will inflect the arr_input, that is don't not modify the raw array
-    for(int i=0;i<n;i++)
-        arr[i]=arr_input[i];
+    memcpy(arr,arr_input,n*4);
+
     //sorting
     int swap_times=0; *compare_times=0;
-    for(int i=(n-1); i>=0; i--){
+    for(i=(n-1); i>=0; i--){
         for(int j=1;j<=i;j++){
             if(arr[j]<arr[j-1]){
                 swap_times++;
@@ -29,10 +29,9 @@ int bubble_sort(int* arr_input, int n, int* compare_times){
             (*compare_times)++;
         }
     }
-    if(flag>3)
-        fprintf(bubble_file,"\n");
-    fprintf(bubble_file,bubble_file_first_line_text);
-    for(int i=0;i<n;i++){
+    if(flag>3)    fprintf(bubble_file,"\n");
+    else    fprintf(bubble_file,bubble_file_first_line_text);
+    for(i=0;i<n;i++){
         char sequence[5];itoa(arr[i],sequence,10);
         fprintf(bubble_file,sequence);
         fprintf(bubble_file," ");
@@ -43,11 +42,10 @@ int bubble_sort(int* arr_input, int n, int* compare_times){
 
 int selection_sort(int* arr_input, int n, int* compare_times){
     int arr[n]={0}; //prevent arr will inflect the arr_input, that is don't not modify the raw array
-    for(int i=0;i<n;i++)
-        arr[i]=arr_input[i];
+    memcpy(arr,arr_input,n*4);
 
     int swap_times=0; *compare_times=0;
-    for(int i=n-1;i>0;i--){
+    for(i=n-1;i>0;i--){
         int max_place=i; //max has been used by c++ std
         for(int j=0;j<i;j++){
             if(arr[j]>arr[max_place]){
@@ -60,10 +58,9 @@ int selection_sort(int* arr_input, int n, int* compare_times){
         arr[i] = tmp;
         swap_times ++;
     }
-    if(flag>3)
-        fprintf(selection_file,"\n");
-    fprintf(selection_file,selection_file_first_line_text);
-    for(int i=0;i<n;i++){
+    if(flag>3)  fprintf(selection_file,"\n");
+    else    fprintf(selection_file,selection_file_first_line_text);
+    for(i=0;i<n;i++){
         char sequence[5];itoa(arr[i],sequence,10);
         fprintf(selection_file,sequence);
         fprintf(selection_file," ");
@@ -74,25 +71,23 @@ int selection_sort(int* arr_input, int n, int* compare_times){
 
 int insertion_sort(int* arr_input, int n, int* compare_times){
     int arr[n]={0}; //prevent arr will inflect the arr_input, that is don't not modify the raw array
-    for(int i=0;i<n;i++)
-        arr[i]=arr_input[i];
+    memcpy(arr,arr_input,n*4);
 
     int swap_times=0; *compare_times=0;
-    for(int i=1;i<n;i++){
+    for(i=1;i<n;i++){
         int index = arr[i],j;
         for(j=i; (j>0)&&(arr[j-1]>index);j--){
             arr[j]=arr[j-1];
-            swap_times ++;
+            //swap_times ++;    //20181127 TA want correction
             (*compare_times)++ ;
         }
         arr[j] = index;
         swap_times++;
     }
     //copying and pasting are shameful, but useful.
-    if(flag>2)
-        fprintf(insertion_file,"\n");
-    fprintf(insertion_file,insertion_file_first_line_text);
-    for(int i=0;i<n;i++){
+    if(flag>2)  fprintf(insertion_file,"\n");
+    else    fprintf(insertion_file,insertion_file_first_line_text);
+    for(i=0;i<n;i++){
         char sequence[5];itoa(arr[i],sequence,10);
         fprintf(insertion_file,sequence);
         fprintf(insertion_file," ");
@@ -104,7 +99,7 @@ int main(){
     int tmp, array_500[500]={0}, array_1000[1000]={0}, array_2000[2000]={0};
     FILE *file_pointer;
     file_pointer = fopen("input.txt","r");
-    for(int i=0;fscanf(file_pointer,"%d",&tmp)!=EOF;i++){
+    for(i=0;fscanf(file_pointer,"%d",&tmp)!=EOF;i++){
         if(i<500)
             array_500[i]=tmp;
         else if(i<1500)
