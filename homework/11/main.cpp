@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 int c_func(int n,int m){
     if( m>n )
@@ -28,7 +27,7 @@ void median(int* arr){
                 arr[j]=arr[j+1];
                 arr[j+1]=tmp;
             }
-    }
+    }   //the topic said to use bubble sort
     for(int i=0;i<11;i++)
         printf("%d ",arr[i]);
     printf("\nmedian is:%d\n\n",arr[5]);
@@ -36,8 +35,8 @@ void median(int* arr){
 
 void magic_square(int n){
     int arr[n][n]={0};
-    memset(arr,0,(n)*n*4);
-    int current_horizon=(n/2), current_vertical=0,counter=1;
+    memset(arr,0,n*n*4);
+    int current_horizon=(n/2), current_vertical=0, counter=1;
     for(;counter<=n*n;){
         if(arr[current_vertical][current_horizon]!=0){
             if(current_horizon == current_vertical && current_horizon == n-1){
@@ -56,11 +55,9 @@ void magic_square(int n){
         if(current_vertical<0)  current_vertical = n-1;
         if(current_horizon<0)   current_horizon = n-1;
     }
-    for(int i=0;i<n;i++){
+    for(int i=0; i<n && printf("\n"); i++)
         for(int j=0;j<n;j++)
             printf("%2d ",arr[i][j]);
-        printf("\n");
-    }
 }
 
 int main() {
