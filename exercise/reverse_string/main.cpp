@@ -10,7 +10,7 @@ void compare(string s1, string s2){
     else{
         cout<<s2<<endl;
         reverse(s2.begin(),s2.end());
-        cout<<s<<endl;
+        cout<<s2<<endl;
     }
 }
 
