@@ -34,8 +34,8 @@ void median(int* arr){
 }
 
 void magic_square(int n){
-    int arr[n][n]={0};
-    memset(arr,0,n*n*4);
+    int arr[15][15]={0};
+    memset(arr,0,15*15*4);
     int current_horizon=(n/2), current_vertical=0, counter=1;
     for(;counter<=n*n;){
         if(arr[current_vertical][current_horizon]!=0){
