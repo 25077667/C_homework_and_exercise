@@ -49,8 +49,8 @@ void mypush(int input){
 }
 
 void mypop(){
-    int top_value;
-    if(!isempty()){
+    int top_value, now_is_empty=isempty();
+    if(!now_is_empty){
         Stack* next_stack;Stack* preverous_stack;
         preverous_stack = top;
         //switch the top of stack
@@ -59,7 +59,7 @@ void mypop(){
         top = next_stack;
         free(preverous_stack);
     }
-    show_stack(isempty(),top_value,0);
+    show_stack(now_is_empty,top_value,0);
 }
 
 int main() {
