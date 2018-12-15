@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1544803193 source:c:\users\yang\git\nsysu_107_c_homework_and_exercise\homework\13\main\main.c
+	"myheader.h"
+
+1544798798 c:\users\yang\git\nsysu_107_c_homework_and_exercise\homework\13\main\myheader.h
+	<stdio.h>
+	<stdlib.h>
+
+1544803193 source:c:\users\yang\git\nsysu_107_c_homework_and_exercise\homework\13\main\myheader.c
+	"myheader.h"
+
