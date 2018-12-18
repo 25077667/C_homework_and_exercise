@@ -17,10 +17,12 @@ struct node{
     int data;
     struct node* left;
     struct node* right;
+    int index;
 };
 typedef struct node record;
 record* root=NULL;
 record* parent=NULL;
+record* appeared=NULL;
 
 void Question1(){
     printf("Name: ***\nStudent ID:*****");
@@ -183,11 +185,13 @@ void Question4(){
     }
 }
 
-bool rand_push(int number){
-    if(compare(root,number)==NULL){
+bool rand_push(int number, int push_counter){
+    appeared = compare(root,number);
+    if(appeared==NULL){
         record* new_record = (record*)malloc(sizeof(node));
-        new_record->data=number;
+        new_record ->data=number;
         new_record ->left = new_record->right =NULL;
+        new_record ->index = push_counter;
 
         if(parent->data > number)
             parent->left = new_record;
@@ -195,8 +199,10 @@ bool rand_push(int number){
             parent->right = new_record;
         return true;
     }
-    else
+    else{
+
         return false;
+    }
 }
 
 void Question5(){
@@ -211,11 +217,12 @@ void Question5(){
         int next = (rand_num[0]*rand_num[3]+rand_num[1])%rand_num[2];
         root->data = rand_num[3];   //already put the next random number here
         root->right = root->left = NULL;
-        while(rand_push(next)){
+        root->index=0;
+        while(rand_push(next,push_couter)){
             next = (rand_num[0]*next+rand_num[1])%rand_num[2];
             push_couter++;
         }
-        printf("Case %d:%d\n",case_counter,push_couter);
+        printf("Case %d:%d\n",case_counter,push_couter-appeared->index);
         case_counter++;push_couter=1;
     }
 
