@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 int numder_of_students;
 int q6_counter=1;
 int sum_the_reverse(int input);
@@ -75,7 +77,7 @@ void Question3(){
         fscanf(file4_pointer,"%d ", &student_id);
         student[i].id = student_id;
         int j;
-        bool is_cheat=0;
+        bool is_cheat=false;
         for(j=0;j<8;j++){
             int current_score;
             fscanf(file4_pointer, "%d:",&current_score);
@@ -143,7 +145,7 @@ bool push(int number){
         return true;
     else{
         if(compare(root,number)==NULL){
-            record* new_record = (record*)malloc(sizeof(node));
+            record* new_record = (record*)malloc(sizeof(struct node));
             new_record->data=number;
             new_record ->left = new_record->right =NULL;
 
@@ -171,7 +173,7 @@ void Question4(){
     while(scanf("%d",&input) != EOF){
         //use binary tree to record all the numbers
         root = NULL;
-        root = (node*)malloc(sizeof(node));
+        root = (record*)malloc(sizeof(struct node));
         root->data=input;
         root->right = root->left = NULL;
 
@@ -188,7 +190,7 @@ void Question4(){
 bool rand_push(int number, int push_counter){
     appeared = compare(root,number);
     if(appeared==NULL){
-        record* new_record = (record*)malloc(sizeof(node));
+        record* new_record = (record*)malloc(sizeof(struct node));
         new_record ->data=number;
         new_record ->left = new_record->right =NULL;
         new_record ->index = push_counter;
@@ -206,7 +208,7 @@ bool rand_push(int number, int push_counter){
 }
 
 void Question5(){
-    root=(record*)malloc(sizeof(node));
+    root=(record*)malloc(sizeof(struct node));
     int rand_num[4],i,push_couter=1,case_counter=1;
     while(1){
         for(i=0;i<4;i++)
