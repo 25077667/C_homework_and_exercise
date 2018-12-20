@@ -1,10 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
+typedef enum { FALSE, TRUE } boolean;
 int numder_of_students;
 int q6_counter=1;
 int sum_the_reverse(int input);
+
+struct node{
+    int data;
+    struct node* left;
+    struct node* right;
+    int index;
+};
+typedef struct node record;
+record* root=NULL; record* parent=NULL; record* appeared=NULL;
 
 void sorting(int *arr,int n){
     for(int i=1;i<n;i++){
@@ -14,17 +23,6 @@ void sorting(int *arr,int n){
         arr[j]=index;
     }
 }
-
-struct node{
-    int data;
-    struct node* left;
-    struct node* right;
-    int index;
-};
-typedef struct node record;
-record* root=NULL;
-record* parent=NULL;
-record* appeared=NULL;
 
 void Question1(){
     printf("Name: ***\nStudent ID:*****");
@@ -77,7 +75,7 @@ void Question3(){
         fscanf(file4_pointer,"%d ", &student_id);
         student[i].id = student_id;
         int j;
-        bool is_cheat=false;
+        boolean is_cheat=FALSE;
         for(j=0;j<8;j++){
             int current_score;
             fscanf(file4_pointer, "%d:",&current_score);
@@ -85,7 +83,7 @@ void Question3(){
                 current_score = 0;
             else if(current_score == -2){
                 current_score = 0;
-                is_cheat = true;
+                is_cheat = TRUE;
             }
             student[i].all_score[j]=current_score;
         }
@@ -140,9 +138,9 @@ record* compare(record* current_address,int number){
     }
 }
 
-bool push(int number){
+boolean push(int number){
     if(number == 1 )
-        return true;
+        return TRUE;
     else{
         if(compare(root,number)==NULL){
             record* new_record = (record*)malloc(sizeof(struct node));
@@ -157,7 +155,7 @@ bool push(int number){
                 push(numSquareSum(number));
         }
         else
-            return false;
+            return FALSE;
     }
 }
 
@@ -187,7 +185,7 @@ void Question4(){
     }
 }
 
-bool rand_push(int number, int push_counter){
+boolean rand_push(int number, int push_counter){
     appeared = compare(root,number);
     if(appeared==NULL){
         record* new_record = (record*)malloc(sizeof(struct node));
@@ -199,11 +197,11 @@ bool rand_push(int number, int push_counter){
             parent->left = new_record;
         else
             parent->right = new_record;
-        return true;
+        return TRUE;
     }
     else{
 
-        return false;
+        return FALSE;
     }
 }
 
