@@ -1,0 +1,33 @@
+8
+5 3 9 12 7 1 -5 9 
+insert 20
+delete 3
+delete 0
+insert 15
+delete 0
+insert 9
+delete 5
+insert 33
+delete 6
+delete 10
+insert 14
+delete 7
+delete 9
+insert 1
+insert 2
+insert 3
+delete 3
+delete 20
+insert -4
+insert 12
+insert -6
+insert 14
+delete 1
+insert 16
+insert 19
+insert -10
+delete 5
+insert -9
+insert 7
+insert 16
+insert 19
