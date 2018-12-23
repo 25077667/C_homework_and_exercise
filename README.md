@@ -1,12 +1,11 @@
-# NSYSU_107_C_homework_and_exercise
-中山C程式作業&amp;練習
+# C_homework_and_exercise
+C programming homework&amp;exercise at NSYSU
 
+exercise is in the course, homework is out if the course
 
-反正 exercise 就是上課的
+maybe i would use this header "bits/stdc++.h", if you wnat to use it, please google.
 
-header 就是我會用到的 bits/stdc++.h 怎麼用自己google
-
-homework 就是家課 想到更炫砲的解法歡迎丟PR
+if you have any more powerful way to slove any problems, welcome to pull requests
 
 ## WARNING:
 If you just copy my code, you should bear the legal liability and responsibility.
