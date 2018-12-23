@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define exist 1
+#define not_exist -1
+
 typedef struct node{
     int value;
     bool visible;
@@ -17,11 +20,11 @@ bool is_insert(char* operation){
 
 int compare(tree* current,int number){
     if(current == NULL)
-        return -1;  //not exist
+        return not_exist;
     else{
         parent = current;
         if(current->value == number)
-            return 1;//is exist
+            return exist;
         else if(current->value > number)
             compare(current->left, number);
         else
@@ -30,15 +33,13 @@ int compare(tree* current,int number){
 }
 
 void myinsert(int number){
-    int is_appeared = compare(root,number);
-    printf("Insert %d.\n",number);
-    if(is_appeared == 1){
-        printf("number %d is in the list already.\n",number);
+    int appeared = compare(root,number);
+    if(appeared == exist && parent->visible == true)
+        printf("number %d is in list already.\n",number);
+    else if(appeared == exist && parent->visible == false)
         parent->visible = true;
-    }
     else{
-        tree* new_node;
-        new_node = (tree*)malloc(sizeof(struct node));
+        tree* new_node = (tree*)malloc(sizeof(struct node));
         new_node->value = number;
         new_node->visible = true;
         new_node->left = new_node->right = NULL;
@@ -50,9 +51,9 @@ void myinsert(int number){
 }
 
 void mydelete(int number){
-    int is_appeared = compare(root,number);
+    int appeared = compare(root,number);
     printf("Delete %d.\n",number);
-    if(is_appeared == -1)
+    if(appeared == not_exist)
         printf("number %d is not in list.\n",number);
     else{
         tree* to_be_deleted = parent;
@@ -68,36 +69,37 @@ void inorder_traversal(tree* current){
     inorder_traversal(current->right);
 }
 
+void print_list(){
+    printf("list: ");
+    inorder_traversal(root);
+    printf("\n--------------------\n");
+}
+
 int main(){
-    FILE* file_pointer;
-    file_pointer = fopen("input.txt","r");
+    FILE* file_pointer = fopen("input.txt","r");
     root = (tree*)malloc(sizeof(struct node));
 
-    int init_size,i,read_in;
-    fscanf(file_pointer,"%d",&init_size);
-    fscanf(file_pointer,"%d ",&read_in);
-    root->value = read_in;
+    printf("Insert the original numbers.\n");
+    int init_size,i,numbers;
+    fscanf(file_pointer,"%d %d",&init_size, &numbers);
+    root->value = numbers;
     root->left = root->right = NULL;
     for(i=1;i<init_size;i++){
-        fscanf(file_pointer,"%d ",&read_in);
-        myinsert(read_in);
+        fscanf(file_pointer,"%d ",&numbers);
+        myinsert(numbers);
     }
-    printf("Insert the original numbers.\n");
+    print_list();
 
     while(!feof(file_pointer)){
         char operation[6];
-        int number;
-        fscanf(file_pointer,"%s ",&operation);
-        fscanf(file_pointer,"%d",&number);
-        if(is_insert(operation))
-            myinsert(number);
+        fscanf(file_pointer,"%s %d",&operation, &numbers);
+        if(is_insert(operation) && printf("Insert %d.\n",numbers))   //to satisfy the homework order
+            myinsert(numbers);
         else
-            mydelete(number);
-        //print the list
-        printf("list: ");
-        inorder_traversal(root);
-        printf("\n-----------------\n");
+            mydelete(numbers);
+        print_list();
     }
+    printf("Finish total input.\n");
     fclose(file_pointer);
 	return 0;
 }
