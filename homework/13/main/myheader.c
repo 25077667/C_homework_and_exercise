@@ -19,9 +19,9 @@ int myBinarySearch(int *arr, int target, int head, int tail){
     else if(arr[middle] == target)
         return middle;
     else if(arr[middle]<target)
-        myBinarySearch(arr,target,middle+1,tail);
+        return myBinarySearch(arr,target,middle+1,tail);
     else if(arr[middle]>target)
-        myBinarySearch(arr,target,head,middle-1);
+        return myBinarySearch(arr,target,head,middle-1);
     else
         return -1;
 }
