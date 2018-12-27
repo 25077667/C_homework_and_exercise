@@ -26,9 +26,9 @@ int compare(tree* current,int number){
         if(current->value == number)
             return exist;
         else if(current->value > number)
-            compare(current->left, number);
+            return compare(current->left, number);
         else
-            compare(current->right, number);
+            return compare(current->right, number);
     }
 }
 
