@@ -40,10 +40,7 @@ void show_queue(queue* queue_head, queue* queue_tail){
 stack* push_to_stack(stack* top,int value){
     stack* new_node = (stack*)malloc(sizeof(struct stack_node));
     new_node->value = value;
-    if(top == NULL)
-        new_node->previous = NULL;
-    else
-        new_node->previous = top;
+    new_node->previous = (top==NULL)? NULL:top;
     top = new_node;
     return top;
 }
