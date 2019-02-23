@@ -1,6 +1,7 @@
 ﻿#include <bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
+
 using namespace std;
 int d[3];
 int t[3];                                       //因為sort之後，d會被排序完成，這就不會是原本的數列，所以需要把原本數列先存起來在t陣列，後續標準化輸出才不會有問題
