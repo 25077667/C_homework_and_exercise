@@ -18,7 +18,7 @@ int main() {
         else if (salary > 70000)
             cout << s << salary * 16 << endl;
         else
-            continue;  //�z�פW�o�椣�|�����
+            continue;
     }
     return 0;
 }
