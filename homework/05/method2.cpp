@@ -1,80 +1,83 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-double tan_value(int a,int b,int c,int d,int e,int x){
-    return (-1)*a*sin(b*acos(-1)*x /30)*b*acos(-1)/30 + c*cos(x*d*acos(-1)/30)*d*acos(-1)/30;   //we know that arccos(-1) is equal to pi
+double tan_value(int a, int b, int c, int d, int e, int x) {
+    return (-1) * a * sin(b * acos(-1) * x / 30) * b * acos(-1) / 30 + c * cos(x * d * acos(-1) / 30) * d * acos(-1) / 30;  //we know that arccos(-1) is equal to pi
 }
-int original_function(int a,int b,int c,int d,int e,int x){
-    return  a*cos(b*acos(-1)*x /30) + c*sin(x*d*acos(-1)/30)+e;
+int original_function(int a, int b, int c, int d, int e, int x) {
+    return a * cos(b * acos(-1) * x / 30) + c * sin(x * d * acos(-1) / 30) + e;
 }
-int main()
-{
-    int a,b,c,d,e,lower_x,upper_x;
-    cout<<"½Ð¿é¤J5­Ó«Y¼Æ : ";
-    cin>>a>>b>>c>>d>>e;
-    cout<<"½Ð¿é¤Jx¶b½d³ò : ";
-    int cache1,cache2;  cin>>cache1>>cache2;    upper_x=max(cache1,cache2);lower_x=min(cache1,cache2);
-    int tan_point;  cout<<"½Ð¿é¤J©Ò¨D¤ÁÂIªºx­È : ";cin>>tan_point;if(tan_point>upper_x || tan_point<lower_x){cout<<"i want to crash ";system("pause");return 0;}
-    printf("¹ê»Ú¤Á½u±×²v : %.6f\n",tan_value(a,b,c,d,e,tan_point));
+int main() {
+    int a, b, c, d, e, lower_x, upper_x;
+    cout << "ï¿½Ð¿ï¿½J5ï¿½Ó«Yï¿½ï¿½ : ";
+    cin >> a >> b >> c >> d >> e;
+    cout << "ï¿½Ð¿ï¿½Jxï¿½bï¿½dï¿½ï¿½ : ";
+    int cache1, cache2;
+    cin >> cache1 >> cache2;
+    upper_x = max(cache1, cache2);
+    lower_x = min(cache1, cache2);
+    int tan_point;
+    cout << "ï¿½Ð¿ï¿½Jï¿½Ò¨Dï¿½ï¿½ï¿½Iï¿½ï¿½xï¿½ï¿½ : ";
+    cin >> tan_point;
+    if (tan_point > upper_x || tan_point < lower_x) {
+        cout << "i want to crash ";
+        system("pause");
+        return 0;
+    }
+    printf("ï¿½ï¿½Ú¤ï¿½ï¿½uï¿½×²v : %.6f\n", tan_value(a, b, c, d, e, tan_point));
 
-    cout<<"   -35  -30  -25  -20  -15  -10  -5    0     5    10   15   20   25   30   35\n";
-    for(int x=lower_x; x<=upper_x; x++){
-        for(int y=-39; y<=40; y++){
-            int point_y_value=original_function(a,b,c,d,e,x);
-            if(x==lower_x){
-                if(point_y_value==y)
-                    cout<<"*";
-                else if(y==0)
-                    printf("%d",x);
-                else if(y==40)
+    cout << "   -35  -30  -25  -20  -15  -10  -5    0     5    10   15   20   25   30   35\n";
+    for (int x = lower_x; x <= upper_x; x++) {
+        for (int y = -39; y <= 40; y++) {
+            int point_y_value = original_function(a, b, c, d, e, x);
+            if (x == lower_x) {
+                if (point_y_value == y)
+                    cout << "*";
+                else if (y == 0)
+                    printf("%d", x);
+                else if (y == 40)
                     printf("Y");
-                else if(y%5==0)
+                else if (y % 5 == 0)
                     printf("+");
                 else
                     printf("-");
-            }
-            else{
-                if(point_y_value==y){
-                    if(x==tan_point){
-                        if(point_y_value<0 && point_y_value>-40){
-                            printf("(%d,%d)P",tan_point,point_y_value);
-                            y+=(5+(int)log10(abs(x))+(int)log10(abs(y)));
-                        }
-                        else if(point_y_value >0 && point_y_value <40){
-                            printf("P(%d,%d)",tan_point,point_y_value);
-                        }
-                        else if(point_y_value == 0){
-                            printf("P(%d,%d)",tan_point,point_y_value);
-                            y=40;
-                        }
-                        else
+            } else {
+                if (point_y_value == y) {
+                    if (x == tan_point) {
+                        if (point_y_value < 0 && point_y_value > -40) {
+                            printf("(%d,%d)P", tan_point, point_y_value);
+                            y += (5 + (int)log10(abs(x)) + (int)log10(abs(y)));
+                        } else if (point_y_value > 0 && point_y_value < 40) {
+                            printf("P(%d,%d)", tan_point, point_y_value);
+                        } else if (point_y_value == 0) {
+                            printf("P(%d,%d)", tan_point, point_y_value);
+                            y = 40;
+                        } else
                             y--;
-                    }
-                    else
-                        cout<<"*";
+                    } else
+                        cout << "*";
                 }
 
-                else if( ((x-tan_point)<=5&&(x-tan_point)>0) || ((tan_point-x)<=5&&(tan_point-x)>0) ){
-                    int tans_line_y=(int)tan_value(a,b,c,d,e,tan_point)*(x-tan_point)+original_function(a,b,c,d,e,tan_point);
-                    if(tans_line_y==y){
-                        if((int)tan_value(a,b,c,d,e,tan_point)==0)
-                            cout<<"|";
-                        else if(tan_value(a,b,c,d,e,tan_point)>0&&tan_value(a,b,c,d,e,tan_point)<=10)
-                            cout<<"\\";
-                        else if(tan_value(a,b,c,d,e,tan_point)<0&&tan_value(a,b,c,d,e,tan_point)>=-10)
-                            cout<<"/";
+                else if (((x - tan_point) <= 5 && (x - tan_point) > 0) || ((tan_point - x) <= 5 && (tan_point - x) > 0)) {
+                    int tans_line_y = (int)tan_value(a, b, c, d, e, tan_point) * (x - tan_point) + original_function(a, b, c, d, e, tan_point);
+                    if (tans_line_y == y) {
+                        if ((int)tan_value(a, b, c, d, e, tan_point) == 0)
+                            cout << "|";
+                        else if (tan_value(a, b, c, d, e, tan_point) > 0 && tan_value(a, b, c, d, e, tan_point) <= 10)
+                            cout << "\\";
+                        else if (tan_value(a, b, c, d, e, tan_point) < 0 && tan_value(a, b, c, d, e, tan_point) >= -10)
+                            cout << "/";
                         else
-                            cout<<"-";
-                    }
-                    else if(y==0)
-                        cout<<"|";
+                            cout << "-";
+                    } else if (y == 0)
+                        cout << "|";
                     else
-                        cout<<" ";
+                        cout << " ";
                 }
 
-                else if(y==0)
-                    cout<<"|";
+                else if (y == 0)
+                    cout << "|";
                 else
-                    cout<<" ";
+                    cout << " ";
             }
         }
         printf("\n");
