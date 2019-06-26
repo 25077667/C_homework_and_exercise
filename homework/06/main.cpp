@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
-int years[10000];
+bool years[10000];
 int mon[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 void leap_year_judge() {
-    memset(years, 0, 10000);
+    memset(years, 0, sizeof(bool) * 10000);
     for (int i = 1583; i < 10000; i++) {
         if ((!(i % 4) && i % 100) || (!(i % 400) && i % 4000))
-            years[i] = 1;  //is a leap year
+            years[i] = true;  //is a leap year
     }
 }
 
