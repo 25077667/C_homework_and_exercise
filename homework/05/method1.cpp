@@ -22,23 +22,22 @@ int original_function(int a, int b, int c, int d, int e, int x) {
 }
 int main() {
     int a, b, c, d, e;
-    int upper_x, lower_x;     //upper_x  the upper bound of x,
-    cout << "�п�J5�ӫY�� : ";  //input 5 coefficient
-    cin >> a >> b >> c >> d >> e;
-    cout << "�п�Jx�b�d�� : ";  //input the range which you want
-    int cache1, cache2;
-    cin >> cache1 >> cache2;
-    upper_x = max(cache1, cache2);
-    lower_x = min(cache1, cache2);  //make sure upper bound and lower bound is max and min
+    int upper_x, lower_x;                     //upper_x  the upper bound of x,
+    printf("please input 5 coefficients: ");  //input 5 coefficient
+    scanf("%d %d %d %d %d", &a, &b, &c, &d, &e);
+    printf("input the range of x : ");
+    int rawRange1, rawRange2;
+    scanf("%d %d", &rawRange1, &rawRange2);
+    upper_x = max(rawRange1, rawRange2);
+    lower_x = min(rawRange1, rawRange2);  //make sure upper bound and lower bound is max and min
     int tan_point;
-    cout << "�п�J�ҨD���I��x�� : ";
-    cin >> tan_point;
+    printf("please input the point you want to find derivation: ");
+    scanf("%d", &tan_point);
     if (tan_point > upper_x || tan_point < lower_x) {
-        cout << "i want to crash ";
-        system("pause");
-        return 0;
+        printf("the derivation out of range!\n");
+        exit(1);
     }
-    printf("��ڤ��u�ײv : %.6f\n", tan_value(a, b, c, d, e, tan_point));
+    printf("the derivation is : %.6f\n", tan_value(a, b, c, d, e, tan_point));
 
     //graph
     //�Ϊk�j�����o�� gotoxy(40,40);putchar('*');
@@ -109,6 +108,6 @@ int main() {
         printf("( %d, %d )", tan_point, original_function(a, b, c, d, e, tan_point));  //print the tangent point coordinate
     }
     for (int i = 0; i < (abs(upper_x) + abs(lower_x)); i++)
-        cout << "\n";  //make sure file end do not cause trouble
+        printf("\n");  //make sure file end do not cause trouble
     return 0;
 }
