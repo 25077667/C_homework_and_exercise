@@ -31,15 +31,15 @@ int main() {
     read_write_file();
     while (1) {
         char c;
-        cout << "�п�J�n�M�䪺�r��:";
+        cout << "請輸入要尋找的字元:";
         cin >> c;
         if (((int)c > 96 && (int)c < 123) || ((int)c > 64 && (int)c < 91))
-            printf("�r��\'%c\'�@�@�M���:%d", c, lower_char[toupper(c) - 'A'] + captal_char[toupper(c) - 'A']);
+            printf("字元\'%c\'一共找到:%d", c, lower_char[toupper(c) - 'A'] + captal_char[toupper(c) - 'A']);
         else if (c == '*') {
-            cout << "�����M��C";
+            cout << "結束尋找。";
             break;
         } else
-            cout << "��J���~�A�A�դ@���C";
+            cout << "輸入錯誤，再試一次。";
         cout << endl
              << endl;
     }

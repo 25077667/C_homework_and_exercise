@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 int blank = 0;
-int check_range(int n) {
-    if (n > 0 && n < 27)
-        return 1;
-    else
-        return 0;
+
+bool isInRange(int n) {
+    return n > 0 && n < 27;
 }
 
 void draw_parallelogram(int n) {
@@ -54,7 +52,7 @@ int main() {
         blank = 0;
         cout << "Please input the number N:";
         cin >> n;
-        if (!check_range(n)) {
+        if (!isInRange(n)) {
             cout << "The number N is out of range. Please input again!!\n"
                  << endl;
             continue;

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-int c_func(int n, int m) {
+int choose(int n, int m) {
     if (m > n)
         return 0;
     else if (m == 1)
@@ -8,13 +8,13 @@ int c_func(int n, int m) {
     else if (n == 0 || m == 0)
         return 1;
     else
-        return c_func(n - 1, m - 1) + c_func(n - 1, m);
+        return choose(n - 1, m - 1) + choose(n - 1, m);
 }
 
 void binomial(int n) {
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= i; j++)
-            printf("%d ", c_func(i, j));
+            printf("%d ", choose(i, j));
         printf("\n");
     }
 }
@@ -37,7 +37,7 @@ void magic_square(int n) {
     int arr[15][15] = {0};
     memset(arr, 0, 15 * 15 * 4);
     int current_horizon = (n / 2), current_vertical = 0, counter = 1;
-    for (; counter <= n * n;) {
+    while (counter <= n * n) {
         if (arr[current_vertical][current_horizon] != 0) {
             if (current_horizon == current_vertical && current_horizon == n - 1) {
                 current_horizon = 0;

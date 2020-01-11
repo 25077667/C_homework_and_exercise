@@ -9,13 +9,13 @@ struct stack {
 typedef struct stack Stack;
 Stack* top = NULL;
 
-void show_stack(bool isempty, int value, bool ispush) {
-    if (isempty && !ispush) {
+void show_stack(bool isEmpty, int value, bool isPush) {
+    if (isEmpty && !isPush) {
         printf("Error pop.\nNothing in the stack.\n");
         return;
     }
 
-    if (ispush)
+    if (isPush)
         printf("push %d into stack.\n", value);
     else
         printf("pop %d from stack.\n", value);
@@ -31,11 +31,8 @@ void show_stack(bool isempty, int value, bool ispush) {
     }
 }
 
-bool isempty() {
-    if (top == NULL)
-        return true;
-    else
-        return false;
+bool isEmpty() {
+    return top == NULL;
 }
 
 void mypush(int input) {
@@ -49,11 +46,11 @@ void mypush(int input) {
     new_stack->value = input;
     new_stack->next = top;
     top = new_stack;
-    show_stack(isempty(), input, 1);
+    show_stack(isEmpty(), input, 1);
 }
 
 void mypop() {
-    int top_value, now_is_empty = isempty();
+    int top_value, now_is_empty = isEmpty();
     if (!now_is_empty) {
         Stack* next_stack;
         Stack* preverous_stack;
