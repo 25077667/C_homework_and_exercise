@@ -17,12 +17,12 @@ int annualBonus(int salary) {
 }
 
 int main() {
-    int salary, Bonus;
+    int salary, bonus;
     char* string = "Your annual salary is $";
     printf("Enter the value of monthly salary : ");
     scanf("%d", &salary);
 
-    Bonus = annualBonus(salary);
+    bonus = annualBonus(salary);
     printf("%s%d", string, Bonus);
 
     return 0;
